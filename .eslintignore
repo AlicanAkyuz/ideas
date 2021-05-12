@@ -1,0 +1,11 @@
+node_modules
+build
+dist
+config
+coverage
+public
+**/*.react-app-env.d
+.eslintrc.json
+*.css
+*.svg
+*.styles.ts

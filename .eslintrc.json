@@ -1,0 +1,59 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "react-hooks", "@typescript-eslint"],
+  "settings": {
+    "react": {
+      "version": "17.0.2"
+    },
+    "import/parsers": {
+      "@typescript-eslint/parser": [".js", ".jsx", ".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {},
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  "rules": {
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "import/extensions": "off",
+    "import/prefer-default-export": "off",
+    "no-unused-expressions": "error",
+    "@typescript-eslint/no-unused-expressions": "error",
+    "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
+    "no-shadow": "error",
+    "@typescript-eslint/no-shadow": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/prop-types": "error",
+    "accessor-pairs": "error",
+    "array-callback-return": "error",
+    "block-scoped-var": "error",
+    "no-eval": "error",
+    "no-extend-native": "error",
+    "no-extra-bind": "error",
+    "no-extra-label": "error",
+    "no-fallthrough": "error",
+    "no-floating-decimal": "error",
+    "no-global-assign": "error",
+    "no-implicit-globals": "error"
+  }
+}
