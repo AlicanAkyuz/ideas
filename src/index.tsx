@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import App from './app/App'
 import 'antd/dist/antd.dark.css'
 
 ReactDOM.render(
