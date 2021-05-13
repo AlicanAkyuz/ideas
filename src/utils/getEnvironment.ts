@@ -4,9 +4,13 @@
 
 function getEnvironment(): {
   apiRoot: string
+  universesApiPath: string
+  starsApiPath: string
 } {
   return {
-    apiRoot: process.env.API_ROOT,
+    apiRoot: 'http://localhost:3000',
+    universesApiPath: '/universes',
+    starsApiPath: '/stars',
   }
 }
 
