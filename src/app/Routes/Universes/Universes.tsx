@@ -4,10 +4,16 @@
 
 // libs
 import React, { FC } from 'react'
-// styles
+import useGetData from 'hooks/useGetData'
 
 // TODO
 const Universes: FC = () => {
+  const { isLoading, error, data } = useGetData('/universes', [], 1)
+
+  if (data) {
+    console.log({ data, isLoading, error })
+  }
+
   return (
     <div>
       <h4>UNIVERSES</h4>
