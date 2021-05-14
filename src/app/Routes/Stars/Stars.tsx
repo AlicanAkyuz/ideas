@@ -8,6 +8,7 @@ import React, { useState, useEffect, useContext, FC } from 'react'
 // contexts and types
 import { DataContext } from 'contexts/data/DataContext'
 import { DataAction } from 'contexts/data/types'
+import { GetStarsApiResponseT } from 'types/api/getStars'
 // hooks
 import useGetData from 'hooks/useGetData'
 // utils
@@ -29,19 +30,23 @@ const Stars: FC = () => {
   const [retryClient, setRetryClient] = useState(false)
 
   // pull data through useGetData
-  const { isLoading, error, data } = useGetData(getEnvironment().starsApiPath, [retryClient])
+  const { isLoading, error, starsData } = useGetData<{
+    starsData: GetStarsApiResponseT | undefined
+    error: Error | undefined
+    isLoading: boolean
+  }>(getEnvironment().starsApiPath, [retryClient])
 
   // set data to context
   const { dataDispatch } = useContext(DataContext)
   const { SET_STARS } = DataAction
   useEffect(() => {
-    if (data) {
+    if (starsData) {
       dataDispatch({
         type: SET_STARS,
-        payload: { stars: data },
+        payload: { stars: starsData },
       })
     }
-  }, [data])
+  }, [starsData, dataDispatch, SET_STARS])
 
   // fired when user retries to load data -> re-fires useGetData
   const handleRetryClick = () => setRetryClient(!retryClient)
@@ -61,7 +66,7 @@ const Stars: FC = () => {
       )}
 
       {/* STARS VIEW */}
-      {!isLoading && !error && data && <StarsView />}
+      {!isLoading && !error && starsData && <StarsView />}
     </div>
   )
 }

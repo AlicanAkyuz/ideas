@@ -8,6 +8,7 @@ import React, { useState, useEffect, useContext, FC } from 'react'
 // contexts and types
 import { DataContext } from 'contexts/data/DataContext'
 import { DataAction } from 'contexts/data/types'
+import { GetUniversesApiResponseT } from 'types/api/getUniverses'
 // hooks
 import useGetData from 'hooks/useGetData'
 // utils
@@ -29,19 +30,23 @@ const Universes: FC = () => {
   const [retryClient, setRetryClient] = useState(false)
 
   // pull data through useGetData
-  const { isLoading, error, data } = useGetData(getEnvironment().universesApiPath, [retryClient])
+  const { isLoading, error, universesData } = useGetData<{
+    universesData: GetUniversesApiResponseT | undefined
+    error: Error | undefined
+    isLoading: boolean
+  }>(getEnvironment().universesApiPath, [retryClient])
 
   // set data to context
   const { dataDispatch } = useContext(DataContext)
   const { SET_UNIVERSES } = DataAction
   useEffect(() => {
-    if (data) {
+    if (universesData) {
       dataDispatch({
         type: SET_UNIVERSES,
-        payload: { universes: data },
+        payload: { universes: universesData },
       })
     }
-  }, [data])
+  }, [universesData, dataDispatch, SET_UNIVERSES])
 
   // fired when user retries to load data -> re-fires useGetData
   const handleRetryClick = () => setRetryClient(!retryClient)
@@ -61,7 +66,7 @@ const Universes: FC = () => {
       )}
 
       {/* UNIVERSES VIEW */}
-      {!isLoading && !error && data && <UniversesView />}
+      {!isLoading && !error && universesData && <UniversesView />}
     </div>
   )
 }

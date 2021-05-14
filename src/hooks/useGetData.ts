@@ -7,21 +7,27 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import axiosRetry from 'axios-retry'
+// types
+import { GetUniversesApiResponseT } from 'types/api/getUniverses'
+import { GetStarsApiResponseT } from 'types/api/getStars'
 // utils
 import getEnvironment from 'utils/getEnvironment'
 
+// eslint-disable-next-line
 function useGetData<T>(
   path: string,
   deps: React.DependencyList,
   retry = 3,
 ): {
-  data: T | undefined
+  universesData: GetUniversesApiResponseT | undefined
+  starsData: GetStarsApiResponseT | undefined
   error: Error | undefined
   isLoading: boolean
 } {
   // return states
-  const [isLoading, setIsLoading] = useState(false)
-  const [data, setData] = useState<T | undefined>()
+  const [universesData, setUniversesData] = useState<GetUniversesApiResponseT | undefined>()
+  const [starsData, setStarsData] = useState<GetStarsApiResponseT | undefined>()
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<Error | undefined>()
 
   // create axios client and defined base URL & retry config
@@ -48,7 +54,13 @@ function useGetData<T>(
           if (unmounted) return
           fetching = false
           setIsLoading(false)
-          setData(res.data)
+
+          if (path === getEnvironment().universesApiPath) {
+            setUniversesData(res.data)
+          }
+          if (path === getEnvironment().starsApiPath) {
+            setStarsData(res.data)
+          }
         })
         .catch((e) => {
           if (unmounted) return
@@ -58,19 +70,18 @@ function useGetData<T>(
         })
     }
 
-    const cleanup = () => {
+    return () => {
       unmounted = true
       if (fetching) {
         axios.CancelToken.source()
       }
     }
-
-    return cleanup
     // eslint-disable-next-line
   }, deps)
 
   return {
-    data,
+    universesData,
+    starsData,
     error,
     isLoading,
   }

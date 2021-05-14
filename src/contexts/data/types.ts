@@ -7,11 +7,11 @@ export type InitialState = {
 }
 
 type Universes = {
-  universes: any
+  universes: GetUniversesApiResponseT | undefined
 }
 
 type Stars = {
-  stars: any
+  stars: GetStarsApiResponseT | undefined
 }
 
 // action types
@@ -20,6 +20,7 @@ export enum DataAction {
   SET_STARS = 'SET_STARS',
 }
 
+// eslint-disable-next-line
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
     ? { type: Key }
