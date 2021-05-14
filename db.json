@@ -1,0 +1,49 @@
+{
+  "colors": ["RED", "BLUE", "GREEN", "YELLOW", "BLACK"],
+  "stars": [
+    {
+      "color": "RED",
+      "id": 123,
+      "name": "My happy star 123",
+      "universeId": 333
+    },
+    {
+      "color": "YELLOW",
+      "id": 321,
+      "name": "321 is myy happy star",
+      "universeId": 333
+    }
+  ],
+  "universes": [
+    {
+      "id": 333,
+      "maxSize": 3,
+      "name": "Big universe"
+    },
+    {
+      "id": 222,
+      "maxSize": 7,
+      "name": "Andromeda"
+    },
+    {
+      "id": 111,
+      "maxSize": 2,
+      "name": "Cygnus"
+    },
+    {
+      "id": 123,
+      "maxSize": 12,
+      "name": "Maffei"
+    },
+    {
+      "id": 134,
+      "maxSize": 17,
+      "name": "Magellanic"
+    },
+    {
+      "id": 654,
+      "maxSize": 15,
+      "name": "Virgo"
+    }
+  ]
+}
