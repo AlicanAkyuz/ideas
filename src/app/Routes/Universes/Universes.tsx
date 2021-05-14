@@ -4,7 +4,10 @@
  * */
 
 // libs
-import React, { useState, FC } from 'react'
+import React, { useState, useEffect, useContext, FC } from 'react'
+// contexts and types
+import { DataContext } from 'contexts/data/DataContext'
+import { DataAction } from 'contexts/data/types'
 // hooks
 import useGetData from 'hooks/useGetData'
 // utils
@@ -27,6 +30,18 @@ const Universes: FC = () => {
 
   // pull data through useGetData
   const { isLoading, error, data } = useGetData(getEnvironment().universesApiPath, [retryClient])
+
+  // set data to context
+  const { dataDispatch } = useContext(DataContext)
+  const { SET_UNIVERSES } = DataAction
+  useEffect(() => {
+    if (data) {
+      dataDispatch({
+        type: SET_UNIVERSES,
+        payload: { universes: data },
+      })
+    }
+  }, [data])
 
   // fired when user retries to load data -> re-fires useGetData
   const handleRetryClick = () => setRetryClient(!retryClient)
