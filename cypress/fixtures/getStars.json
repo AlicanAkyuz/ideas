@@ -1,0 +1,14 @@
+[
+  {
+    "color": "RED",
+    "id": 123,
+    "name": "My happy star 123",
+    "universeId": 333
+  },
+  {
+    "color": "YELLOW",
+    "id": 321,
+    "name": "321 is myy happy star",
+    "universeId": 333
+  }
+]
