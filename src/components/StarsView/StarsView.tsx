@@ -1,5 +1,5 @@
 /**
- * UniversesView pulls universe data from data context and displays them in a table
+ * StarsView pulls star data from data context and displays them in a table
  * */
 
 // libs
@@ -7,18 +7,18 @@ import React, { FC, useContext } from 'react'
 // contexts and types
 import { DataContext } from 'contexts/data/DataContext'
 // styles
-import styles from './UniversesView.styles'
+import styles from './StarsView.styles'
 import { createUseStyles } from 'react-jss'
 import { Table, Typography } from 'antd'
 
 const useStyles = createUseStyles(styles)
 
-const UniversesView: FC = () => {
+const StarsView: FC = () => {
   const classes = useStyles()
   const { Text } = Typography
 
   const {
-    dataState: { universes },
+    dataState: { stars },
   } = useContext(DataContext)
 
   const columns = [
@@ -28,23 +28,28 @@ const UniversesView: FC = () => {
       key: 'id',
     },
     {
-      title: 'Max Size',
-      dataIndex: 'maxSize',
-      key: 'maxSize',
+      title: 'Universe Id',
+      dataIndex: 'universeId',
+      key: 'universeId',
     },
     {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
     },
+    {
+      title: 'Color',
+      dataIndex: 'color',
+      key: 'color',
+    },
   ]
 
   return (
-    <div className={classes.universesViewContainer}>
-      <Text className={classes.title}>Universes</Text>
-      <Table columns={columns} dataSource={universes} pagination={false} />
+    <div className={classes.starsViewContainer}>
+      <Text className={classes.title}>Stars</Text>
+      <Table columns={columns} dataSource={stars} pagination={false} />
     </div>
   )
 }
 
-export default UniversesView
+export default StarsView

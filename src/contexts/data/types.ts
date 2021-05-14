@@ -11,7 +11,7 @@ type Universes = {
 }
 
 type Stars = {
-  stars: GetStarsApiResponseT
+  stars: any
 }
 
 // action types
