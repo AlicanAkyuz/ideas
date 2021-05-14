@@ -2,6 +2,7 @@ export default {
   headerContainer: {
     display: 'flex',
     width: '100%',
+    minWidth: '1200px',
   },
   routesContainer: {
     display: 'flex',

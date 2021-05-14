@@ -8,13 +8,15 @@ export default {
   menuItem: {
     fontSize: '17px',
     padding: '10px',
-    width: '200px',
+    width: '150px',
+    minWidth: '100px',
     height: '55px',
   },
   selectedMenuItem: {
-    fontSize: '23px',
+    fontSize: '20px',
     padding: '10px',
-    width: '200px',
+    width: '150px',
+    minWidth: '100px',
     height: '55px',
   },
 }
