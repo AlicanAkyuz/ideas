@@ -21,7 +21,7 @@
     "format-all": "prettier --write \"**/*.{ts,tsx,js,json, md}\"",
     "lint": "npx eslint src/ --ext \"**/*.{ts,tsx,js,json, md}\"",
     "lint-fix": "npx eslint --fix src/ --ext \"**/*.{ts,tsx,js,json, md}\"",
-    "cypress": "cypress open"
+    "cypress": "npm run start & cypress open"
   },
   "husky": {
     "hooks": {
