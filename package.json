@@ -14,10 +14,19 @@
     "react-scripts": "4.0.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "json-server --watch db.json & react-scripts start",
+    "build": "npm run format-all & npm run lint & react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format-all": "prettier --write \"**/*.{ts,tsx,js,json, md}\"",
+    "lint": "npx eslint src/ --ext \"**/*.{ts,tsx,js,json, md}\"",
+    "lint-fix": "npx eslint --fix src/ --ext \"**/*.{ts,tsx,js,json, md}\"",
+    "cypress": "npm run start & cypress open"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format-all && npm run lint"
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -38,12 +47,14 @@
     ]
   },
   "devDependencies": {
+    "@cypress/webpack-preprocessor": "^5.8.0",
     "@types/jest": "^26.0.23",
     "@types/node": "^15.0.2",
     "@types/react": "^17.0.5",
     "@types/react-dom": "^17.0.4",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
+    "cypress": "^7.3.0",
     "eslint": "^7.26.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-typescript": "^2.4.0",
@@ -52,6 +63,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^6.0.0",
     "prettier": "^2.3.0",
     "typescript": "^4.2.4"
   }
